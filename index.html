@@ -1,0 +1,127 @@
+### `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Cadastro de Usuário</h2>
+
+    <form id="cadastroForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+
+        <input type="email" id="email" placeholder="E-mail" required>
+
+        <input type="text" id="usuario" placeholder="Usuário" required>
+
+        <input type="password" id="senha" placeholder="Senha" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="mensagem"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
+
+---
+
+### `style.css`
+
+```css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#fff;
+    width:360px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+#mensagem{
+    margin-top:20px;
+    text-align:center;
+    color:green;
+    font-weight:bold;
+}
+```
+
+---
+
+### `script.js`
+
+```javascript
+const form = document.getElementById("cadastroForm");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const usuario = {
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        usuario: document.getElementById("usuario").value,
+        senha: document.getElementById("senha").value
+    };
+
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+    document.getElementById("mensagem").innerHTML =
+    "Usuário cadastrado com sucesso!";
+
+    form.reset();
+});
+```
